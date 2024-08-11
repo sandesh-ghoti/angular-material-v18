@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="isMobile ? 'dialog' : 'navigation'"
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="isMobile === false"
+  >
+    <mat-toolbar>Components</mat-toolbar>
+    <app-sidebar />
+
+    <div class="sidenav-bottom-fixed">
+      <button
+        type="button"
+        class="sidenav-toggle"
+        aria-label="Toggle theme"
+        mat-icon-button
+        (click)="toggleTheme()"
+      >
+        <mat-icon
+          aria-label="theme toggle icon"
+          fontIcon="invert_colors"
+        ></mat-icon>
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <!-- main container -->
+  <mat-sidenav-content>
+    <mat-toolbar>
+      @if (isMobile) {
+      <button
+        type="button"
+        class="sidenav-toggle"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      }
+    </mat-toolbar>
+    <div class="container">
+      <ng-content />
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

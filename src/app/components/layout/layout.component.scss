@@ -1,0 +1,35 @@
+@use "@angular/material" as mat;
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 225px;
+  height: 100dvh;
+  padding: 0.35rem;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.sidenav-toggle {
+  margin-right: 0.55rem;
+}
+
+.container {
+  padding: 1rem;
+}
+
+.sidenav-bottom-fixed {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}

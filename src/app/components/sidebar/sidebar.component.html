@@ -1,0 +1,13 @@
+<mat-nav-list>
+  @for (sidebarLink of sidebarLinks; track $index) {
+  <a
+    mat-list-item
+    [routerLink]="sidebarLink.href"
+    class="sidebar-link"
+    routerLinkActive="tonal"
+    (click)="closeSidenav()"
+  >
+    {{ sidebarLink.name }}
+  </a>
+  }
+</mat-nav-list>

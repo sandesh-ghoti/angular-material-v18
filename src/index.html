@@ -1,13 +1,45 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>AngularMaterial</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<!DOCTYPE html>
+<html lang="en" class="dark-mode light-mode">
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularMaterial</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <script>
+      // This logic must execute early, so that we set the necessary
+      // CSS classes to the document node and avoid unstyled content
+      // from appearing on the page.
+      const THEME_PREFERENCE_LOCAL_STORAGE_KEY = "themePreference";
+      const DARK_MODE_CLASS_NAME = "dark-mode";
+      const LIGHT_MODE_CLASS_NAME = "light-mode";
+      const PREFERS_COLOR_SCHEME_DARK = "(prefers-color-scheme: dark)";
+
+      const theme =
+        localStorage.getItem(THEME_PREFERENCE_LOCAL_STORAGE_KEY) ?? "auto";
+      const prefersDark =
+        window.matchMedia &&
+        window.matchMedia(PREFERS_COLOR_SCHEME_DARK).matches;
+      const documentClassList = this.document.documentElement.classList;
+
+      // clearing classes before setting them.
+      this.document.documentElement.className = "";
+      if (theme === "dark" || (theme === "auto" && prefersDark)) {
+        documentClassList.add(DARK_MODE_CLASS_NAME);
+      } else {
+        documentClassList.add(LIGHT_MODE_CLASS_NAME);
+      }
+    </script>
+  </head>
+  <body class="mat-typography">
+    <app-root></app-root>
+  </body>
 </html>

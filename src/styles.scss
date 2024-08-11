@@ -1,1 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    density: (
+      scale: -1,
+    ),
+  )
+);
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+  )
+);
+@include mat.core();
+
+@mixin themable-styles($theme) {
+  .tonal {
+    background-color: mat.get-theme-color($theme, secondary-container);
+    color: mat.get-theme-color($theme, on-secondary-container);
+  }
+
+  .filled-table {
+    --mat-table-row-item-outline-color: mat.get-theme-color(
+      $theme,
+      on-secondary-container
+    );
+    background-color: mat.get-theme-color($theme, secondary-container);
+    color: mat.get-theme-color($theme, on-secondary-container);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: mat.get-theme-color($theme, secondary-container)
+      transparent;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  // Button color variants
+  .secondary-button {
+    @include mat.button-color($theme, $color-variant: secondary);
+  }
+
+  .tertiary-button {
+    @include mat.button-color($theme, $color-variant: tertiary);
+  }
+
+  .warn-button {
+    @include mat.button-color($theme, $color-variant: error);
+  }
+
+  // Icon color variants
+  .primary-icon {
+    @include mat.icon-color($theme, $color-variant: primary);
+  }
+
+  .secondary-icon {
+    @include mat.icon-color($theme, $color-variant: secondary);
+  }
+
+  .tertiary-icon {
+    @include mat.icon-color($theme, $color-variant: tertiary);
+  }
+
+  .warn-icon {
+    @include mat.icon-color($theme, $color-variant: error);
+  }
+}
+
+html {
+  @include mat.all-component-themes($dark-theme);
+
+  &.dark-mode {
+    @include themable-styles($dark-theme);
+  }
+
+  &.light-mode {
+    @include mat.all-component-colors($light-theme);
+    @include themable-styles($light-theme);
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Lato, "Helvetica Neue", sans-serif;
+}
+
+.sidebar-link {
+  --mdc-list-list-item-container-shape: 9999px;
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block: 0.55rem;
+}
+
+.sections-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+mat-form-field {
+  width: 100%;
+  max-width: 400px;
+}
