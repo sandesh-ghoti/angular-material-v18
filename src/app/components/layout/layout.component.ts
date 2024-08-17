@@ -30,7 +30,7 @@ export class LayoutComponent {
   ) {}
 
   ngOnInit(): void {
-    this.breakpointObserver.observe(Breakpoints.Tablet).subscribe((result) => {
+    this.breakpointObserver.observe(Breakpoints.Handset).subscribe((result) => {
       this.isMobile = result.matches;
     });
   }

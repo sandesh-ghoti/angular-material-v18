@@ -1,0 +1,18 @@
+.card-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.85rem;
+  max-width: 1280px;
+  justify-items: center;
+  mat-card {
+    max-width: 400px;
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

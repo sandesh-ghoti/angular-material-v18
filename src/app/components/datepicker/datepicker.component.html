@@ -1,0 +1,31 @@
+<app-section title="apperence toggle button">
+  <mat-slide-toggle
+    [checked]="apperence() === 'outline'"
+    (change)="apperenceService.toggle()"
+  >
+    {{ slideToggleLabel() }}
+  </mat-slide-toggle>
+</app-section>
+
+<app-section title="Date Picker">
+  <mat-form-field [appearance]="apperence()">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" />
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</app-section>
+
+<app-section title="Range date picker">
+  <mat-form-field [appearance]="apperence()">
+    <mat-label>Choose Range date</mat-label>
+    <mat-date-range-input [rangePicker]="range">
+      <input matStartDate placeholder="Start date" />
+      <input matEndDate placeholder="End date" />
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY-MM/DD/YYYY</mat-hint>
+    <mat-date-range-picker #range />
+    <mat-datepicker-toggle matSuffix [for]="range"></mat-datepicker-toggle>
+  </mat-form-field>
+</app-section>

@@ -1,0 +1,73 @@
+<app-section title="simple table">
+  <table mat-table [dataSource]="dataSource">
+    <!-- Cell template defination -->
+    @for(col of displayedColumns;track col){
+    <ng-container [matColumnDef]="col">
+      <th mat-header-cell *matHeaderCellDef>{{ col }}</th>
+      <td mat-cell *matCellDef="let element">{{ element[col] }}</td>
+    </ng-container>
+    }
+
+    <!-- Header defination -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      (click)="clickedRows.add(row)"
+      (dblclick)="clickedRows.delete(row)"
+      [class.demo-row-is-clicked]="clickedRows.has(row)"
+      *matRowDef="let row; columns: displayedColumns"
+    ></tr>
+  </table>
+
+  <div>
+    <h3>Click Log</h3>
+  </div>
+
+  @if (!clickedRows.size) {
+  <div>Clicked rows will be logged here</div>
+  }
+
+  <ul>
+    @for (clickedRow of clickedRows; track clickedRow) {
+    <li>Clicked on {{ clickedRow.name }}</li>
+    }
+  </ul>
+</app-section>
+<br />
+<br />
+<app-section title="table with pagination">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filter" #input />
+  </mat-form-field>
+  <table
+    mat-table
+    [dataSource]="dataSource1"
+    matSort
+    [matSortActive]="sortCol()"
+    matSortDisableClear
+    matSortDirection="desc"
+  >
+    <!-- Cell template defination -->
+    @for(col of displayedColumns;track col){
+    <ng-container [matColumnDef]="col">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        (click)="sortCol.set(col)"
+      >
+        {{ col }}
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element[col] }}</td>
+    </ng-container>
+    }
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements"
+  ></mat-paginator>
+</app-section>

@@ -1,0 +1,104 @@
+<app-section title="apperence toggle button">
+  <mat-slide-toggle
+    [checked]="apperence() === 'outline'"
+    (change)="apperenceService.toggle()"
+  >
+    <p>{{ slideToggleLabel() }}</p>
+  </mat-slide-toggle>
+</app-section>
+
+<app-section title="input field">
+  <mat-form-field [appearance]="apperence()">
+    <mat-label>Input</mat-label>
+    <input matInput />
+  </mat-form-field>
+</app-section>
+
+<app-section title="select">
+  <mat-form-field [appearance]="apperence()">
+    <mat-label>Select</mat-label>
+    <mat-select>
+      <mat-option value="1">One</mat-option>
+      <mat-option value="2">Two</mat-option>
+      <mat-option value="3">Three</mat-option>
+    </mat-select>
+  </mat-form-field>
+</app-section>
+
+<app-section title="text area">
+  <mat-form-field [appearance]="apperence()">
+    <mat-label>Text area</mat-label>
+    <textarea matInput rows="5"></textarea>
+  </mat-form-field>
+</app-section>
+
+<app-section title="autocomplete">
+  <form>
+    <mat-form-field [appearance]="apperence()">
+      <mat-label>Autocomplete</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Pick one"
+        aria-label="User"
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        autoActiveFirstOption
+        [displayWith]="displayFn"
+      >
+        @for (option of filteredOptions|async; track option){
+        <mat-option [value]="option">{{ option.name }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</app-section>
+
+<app-section title="suffix and prefix">
+  <mat-form-field [appearance]="apperence()">
+    <mat-label>Enter password</mat-label>
+    <input matInput [type]="hide() ? 'password' : 'text'" />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="toggleHide()"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{ hide() ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+</app-section>
+
+<app-section title="suffix and prefix">
+  <mat-form-field
+    floatLabel="always"
+    subscriptSizing="dynamic"
+    [appearance]="apperence()"
+  >
+    <mat-label>Amount</mat-label>
+    <input matInput type="number" class="example-right-align" placeholder="0" />
+    <span matTextPrefix>$&nbsp;</span>
+    <span matTextSuffix>.00</span>
+  </mat-form-field>
+</app-section>
+
+<app-section title="error with validators">
+  <form>
+    <mat-form-field [appearance]="apperence()">
+      <mat-label>Enter your email</mat-label>
+      <input
+        matInput
+        placeholder="Enter your email"
+        required
+        [formControl]="errorFormControl"
+      />
+      @if(errorFormControl.invalid){
+      <mat-error>{{ getErrorMessage() }}</mat-error>
+      }
+    </mat-form-field>
+  </form>
+</app-section>

@@ -14,7 +14,7 @@ export const SIDEBAR_LINKS: SidebarLink[] = [
   },
   {
     href: '/text-field',
-    name: 'Text Field',
+    name: 'Text Field/Forms',
   },
   {
     href: '/datepicker',
@@ -23,14 +23,6 @@ export const SIDEBAR_LINKS: SidebarLink[] = [
   {
     href: '/table',
     name: 'Table',
-  },
-  {
-    href: '/menu',
-    name: 'Menu',
-  },
-  {
-    href: '/form',
-    name: 'Form',
   },
   {
     href: '/toaster',
