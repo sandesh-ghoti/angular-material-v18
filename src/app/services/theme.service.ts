@@ -17,8 +17,7 @@ export class ThemeService {
   private readonly localStorage = inject(BrowserStorageService);
   private readonly platformId = inject(PLATFORM_ID);
 
-  readonly theme = signal<Theme | null>(null);
-  readonly themeChanged$ = new Subject<void>();
+  readonly theme = signal<Theme | null>(this.getThemeFromLocalStorageValue());
 
   constructor() {
     if (!isPlatformBrowser(this.platformId)) {
@@ -41,7 +40,6 @@ export class ThemeService {
       documentClassList.add(LIGHT_MODE_CLASS_NAME);
       documentClassList.remove(DARK_MODE_CLASS_NAME);
     }
-    this.themeChanged$.next();
   }
   // 1. Read theme preferences stored in localStorage
   // 2. In case when there are no stored user preferences, then read them from device preferences.

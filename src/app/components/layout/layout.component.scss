@@ -33,3 +33,21 @@
   bottom: 1rem;
   left: 1rem;
 }
+
+p {
+  padding-inline: 1rem;
+  border-radius: 1em;
+  padding-block: 0.5rem;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+@media screen and (max-width: 600px) {
+  p {
+    font-size: large;
+  }
+}

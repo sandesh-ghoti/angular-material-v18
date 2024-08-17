@@ -9,21 +9,6 @@
   >
     <mat-toolbar>Components</mat-toolbar>
     <app-sidebar />
-
-    <div class="sidenav-bottom-fixed">
-      <button
-        type="button"
-        class="sidenav-toggle"
-        aria-label="Toggle theme"
-        mat-icon-button
-        (click)="toggleTheme()"
-      >
-        <mat-icon
-          aria-label="theme toggle icon"
-          fontIcon="invert_colors"
-        ></mat-icon>
-      </button>
-    </div>
   </mat-sidenav>
 
   <!-- main container -->
@@ -40,6 +25,20 @@
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       }
+      <p class="tonal">Angular Material Demo</p>
+      <span class="example-spacer"></span>
+      <button
+        type="button"
+        class="sidenav-toggle"
+        aria-label="Toggle theme"
+        mat-icon-button
+        (click)="toggleTheme()"
+      >
+        <mat-icon
+          aria-label="theme toggle icon"
+          [fontIcon]="theme() === 'dark' ? 'light_mode' : 'dark_mode'"
+        ></mat-icon>
+      </button>
     </mat-toolbar>
     <div class="container">
       <ng-content />

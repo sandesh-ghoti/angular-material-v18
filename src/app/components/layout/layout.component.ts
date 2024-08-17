@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -23,11 +23,10 @@ import { MatButtonModule, MatIconButton } from '@angular/material/button';
 })
 export class LayoutComponent {
   isMobile = false;
+  themeService = inject(ThemeService);
+  theme = this.themeService.theme;
 
-  constructor(
-    private themeService: ThemeService,
-    private breakpointObserver: BreakpointObserver
-  ) {}
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
     this.breakpointObserver.observe(Breakpoints.Handset).subscribe((result) => {
@@ -35,10 +34,6 @@ export class LayoutComponent {
     });
   }
   toggleTheme() {
-    if (this.themeService.theme() === 'light') {
-      this.themeService.setTheme('dark');
-      return;
-    }
-    this.themeService.setTheme('light');
+    this.themeService.setTheme(this.theme() === 'dark' ? 'light' : 'dark');
   }
 }
