@@ -1,6 +1,5 @@
 import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { Subject } from 'rxjs';
 import { BrowserStorageService } from './browser-storage.service';
 
 const THEME_PREFERENCE_LOCAL_STORAGE_KEY = 'themePreference';

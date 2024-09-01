@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { SIDEBAR_LINKS } from './sidebar-options';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatListItem, MatNavList } from '@angular/material/list';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { ThemeService } from '../../services/theme.service';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-sidebar',
@@ -28,10 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SidebarComponent {
   sidebarLinks = SIDEBAR_LINKS;
-  constructor(
-    private sidenav: MatSidenav,
-    private themeService: ThemeService
-  ) {}
+  constructor(private sidenav: MatSidenav) {}
 
   closeSidenav() {
     if (this.sidenav.mode === 'over') {

@@ -4,6 +4,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import {
   MatSnackBar,
+  MatSnackBarConfig,
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
@@ -21,12 +22,14 @@ export class ToasterComponent {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  openSnackBar() {
-    this.snackbarService.open('Cannonball!!', 'Splash', {
+  open(
+    message: string,
+    action = '',
+    config: MatSnackBarConfig = {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
-      duration: 5000,
-      politeness: 'polite',
-    });
+    }
+  ) {
+    return this.snackbarService.open(message, action, config);
   }
 }
