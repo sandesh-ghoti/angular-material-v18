@@ -1,4 +1,5 @@
 @use "@angular/material" as mat;
+@use "app/styles/m3-theme.scss" as custom;
 
 $dark-theme: mat.define-theme(
   (
@@ -79,15 +80,15 @@ $light-theme: mat.define-theme(
 }
 
 html {
-  @include mat.all-component-themes($dark-theme);
+  @include mat.all-component-themes(custom.$dark-theme);
 
   &.dark-mode {
-    @include themable-styles($dark-theme);
+    @include themable-styles(custom.$dark-theme);
   }
 
   &.light-mode {
-    @include mat.all-component-colors($light-theme);
-    @include themable-styles($light-theme);
+    @include mat.all-component-colors(custom.$light-theme);
+    @include themable-styles(custom.$light-theme);
   }
 }
 
